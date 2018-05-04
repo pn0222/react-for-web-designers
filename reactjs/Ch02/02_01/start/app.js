@@ -6,8 +6,7 @@
   
   function SizeSelector(props){
     function sizeOptions(){
-      var sizes = window.Inventory.allSizes;
-      return sizes.map(function(num){
+      return props.sizes.map(function(num){
         return(
           <option value={num} key={num}>{num}</option>
         )
@@ -30,19 +29,43 @@
     return <img src={`../../../assets/${props.color}.jpg`} alt="Product image" />;
   }
   
-  function ProductCustomizer(props){
-    // return React.createElement("div", {className: "customizer"}, React.createElement("div", {className:"product-image"}, React.createElement(ProductImage)));
-    return(
+  // class ProductCustomizer extends React.Component
+  var ProductCustomizer = createReactClass({
+    getInitialState: function(){
+      var sizes = window.Inventory.allSizes;
+      return {
+        color: "red",
+        size: 8,
+        sizes: sizes
+      };
+    },
+
+    render: function(){
+      return(
       <div className="customizer">
         <div className="product-image">
-          <ProductImage color="green"/>
+          <ProductImage color={this.state.color}/>
         </div>
         <div className="selectors">
-          <SizeSelector size={8}/>
+          <SizeSelector size={this.state.size} sizes={this.state.sizes}/>
         </div>
       </div>
-    )
-  }
+    )}
+  });
+  
+  // function ProductCustomizer(props){
+  //   // return React.createElement("div", {className: "customizer"}, React.createElement("div", {className:"product-image"}, React.createElement(ProductImage)));
+  //   return(
+  //     <div className="customizer">
+  //       <div className="product-image">
+  //         <ProductImage color="green"/>
+  //       </div>
+  //       <div className="selectors">
+  //         <SizeSelector size={8}/>
+  //       </div>
+  //     </div>
+  //   )
+  // }
   
   ReactDOM.render(<ProductCustomizer/>, document.getElementById("react-root"));
 })();
