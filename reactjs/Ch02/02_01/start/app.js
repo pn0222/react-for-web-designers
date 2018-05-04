@@ -13,23 +13,19 @@
       });
     }
     function onSizeChange(event){
-    // console.log('Change event fired', event.target.value);
-    props.sizeHandler(event.target.value);
-  }
+      // console.log('Change event fired', event.target.value);
+      props.sizeHandler(event.target.value);
+    }
   	return(
     	<div className="field-group">
-				<label htmlFor="size-options">Size:</label>
-				<select defaultValue={props.size} name="sizeOptions" id="size-options" onChange={onSizeChange}>
-					{sizeOptions()}
-				</select>
-			</div>  
+  			<label htmlFor="size-options">Size:</label>
+  			<select defaultValue={props.size} name="sizeOptions" id="size-options" onChange={onSizeChange}>
+  				{sizeOptions()}
+  			</select>
+  		</div>  
   	)
   }
-  
-  
-  
-  
-  
+
   function ColorSelector(props){
     function colorOptions(){
       return props.colors.map(function(color){
@@ -38,11 +34,14 @@
         )
       });
     }
-    
+    function onColorChange(event){
+      // console.log('Change event fired', event.target.value);
+      props.colorHandler(event.target.value);
+    }
   	return(
     	<div className="field-group">
 				<label htmlFor="color-options">Color:</label>
-				<select defaultValue={props.color} name="colorOptions" id="color-options">
+				<select defaultValue={props.color} name="colorOptions" id="color-options" onChange={onColorChange}>
 					{colorOptions()}
 				</select>
 			</div>  
@@ -76,6 +75,15 @@
         colors: availColors
       });
     },
+    
+    colorHandler: function(selectedColor){
+      console.log('parent colorHandler', selectedColor);
+      
+      var availSize = window.Inventory.byColor[selectedColor];
+      this.setState({
+        sizes: availSize
+      });
+    },
 
     render: function(){
       return(
@@ -85,7 +93,7 @@
         </div>
         <div className="selectors">
           <SizeSelector size={this.state.size} sizes={this.state.sizes} sizeHandler={this.sizeHandler}/>
-          <ColorSelector color={this.state.color} colors={this.state.colors}/>
+          <ColorSelector color={this.state.color} colors={this.state.colors} colorHandler={this.colorHandler}/>
         </div>
       </div>
     )}
