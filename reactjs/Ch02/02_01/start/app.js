@@ -15,13 +15,15 @@
     
   	return(
     	<div className="field-group">
-				<label htmlFor="color-options">Color:</label>
-				<select defaultValue={props.color} name="sizeOptions" id="color-options">
+				<label htmlFor="size-options">Size:</label>
+				<select defaultValue={props.size} name="sizeOptions" id="size-options">
 					{sizeOptions()}
 				</select>
 			</div>  
   	)
   }
+  
+  
   
   function ColorSelector(props){
     function colorOptions(){
@@ -34,8 +36,8 @@
     
   	return(
     	<div className="field-group">
-				<label htmlFor="size-options">Size:</label>
-				<select defaultValue={props.size} name="sizeOptions" id="size-options">
+				<label htmlFor="color-options">Color:</label>
+				<select defaultValue={props.color} name="colorOptions" id="color-options">
 					{colorOptions()}
 				</select>
 			</div>  
