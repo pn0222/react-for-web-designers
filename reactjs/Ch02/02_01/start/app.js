@@ -71,17 +71,27 @@
       console.log('parent sizeHandler', selectedSize);
       
       var availColors = window.Inventory.bySize[selectedSize];
+      // console.log(availColors.includes(this.state.color));
       this.setState({
         colors: availColors
       });
+      if(!availColors.includes(this.state.color)){
+        console.log(availColors[0],availColors[1], availColors[2], availColors[3])
+        this.setState({
+          color: availColors[0]
+        });
+      }
+      
     },
     
     colorHandler: function(selectedColor){
       console.log('parent colorHandler', selectedColor);
       
+      
       var availSize = window.Inventory.byColor[selectedColor];
       this.setState({
-        sizes: availSize
+        sizes: availSize,
+        color: selectedColor
       });
     },
 
