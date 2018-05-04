@@ -23,7 +23,7 @@
 <body class="page page-id-255 page-template-default no-featured-image">
 <div class="header-search-block section light-padding hidden">
 	<div class="section-inner">
-		<form method="get" action="http://hplussport.com/">
+		<form method="get" action="https://hplussport.com/">
 			<input type="search" placeholder="Type and press enter" name="s" id="s">
 		</form>
 	</div>
@@ -94,7 +94,7 @@
 		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-126"><a href="../../../hplussport.com/blog/index.html">Blog</a></li>
 		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-94"><a href="../../../hplussport.com/contact/index.html">Contact</a></li>
 	</ul>
-	<form method="get" class="mobile-search-form" action="http://hplussport.com/">
+	<form method="get" class="mobile-search-form" action="https://hplussport.com/">
 		<input type="search" placeholder="Search form" name="s" id="s">
 		<input type="submit" value="Search" class="search-button"> 
 	</form>
@@ -219,6 +219,9 @@ Polyfills for older browsers
 <script crossorigin src="https://unpkg.com/create-react-class@15/create-react-class.js"></script>
 <script>window.createReactClass || document.write('<script src="../../../node_modules/create-react-class/create-react-class.js"><\/script>')</script>
 
-<script src="app.js"></script>
+<script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script>window.Babel || document.write('<script src="../../../node_modules/babel-standalone/babel.min.js"><\/script>')</script>
+
+<script src="app.js" type="text/babel"></script>
 </body>
 </html>
