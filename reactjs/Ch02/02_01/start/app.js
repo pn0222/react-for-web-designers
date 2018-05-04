@@ -8,20 +8,25 @@
     function sizeOptions(){
       return props.sizes.map(function(num){
         return(
-          <option value={num} key={num}>{num}</option>
+          <option value={num} key={num} >{num}</option>
         )
       });
     }
-    
+    function onSizeChange(event){
+    // console.log('Change event fired', event.target.value);
+    props.sizeHandler(event.target.value);
+  }
   	return(
     	<div className="field-group">
 				<label htmlFor="size-options">Size:</label>
-				<select defaultValue={props.size} name="sizeOptions" id="size-options">
+				<select defaultValue={props.size} name="sizeOptions" id="size-options" onChange={onSizeChange}>
 					{sizeOptions()}
 				</select>
 			</div>  
   	)
   }
+  
+  
   
   
   
@@ -62,6 +67,15 @@
         sizes: sizes
       };
     },
+    
+    sizeHandler: function(selectedSize){
+      console.log('parent sizeHandler', selectedSize);
+      
+      var availColors = window.Inventory.bySize[selectedSize];
+      this.setState({
+        colors: availColors
+      });
+    },
 
     render: function(){
       return(
@@ -70,7 +84,7 @@
           <ProductImage color={this.state.color}/>
         </div>
         <div className="selectors">
-          <SizeSelector size={this.state.size} sizes={this.state.sizes}/>
+          <SizeSelector size={this.state.size} sizes={this.state.sizes} sizeHandler={this.sizeHandler}/>
           <ColorSelector color={this.state.color} colors={this.state.colors}/>
         </div>
       </div>
