@@ -15,9 +15,28 @@
     
   	return(
     	<div className="field-group">
+				<label htmlFor="color-options">Color:</label>
+				<select defaultValue={props.color} name="sizeOptions" id="color-options">
+					{sizeOptions()}
+				</select>
+			</div>  
+  	)
+  }
+  
+  function ColorSelector(props){
+    function colorOptions(){
+      return props.colors.map(function(color){
+        return(
+          <option value={color} key={color}>{color}</option>
+        )
+      });
+    }
+    
+  	return(
+    	<div className="field-group">
 				<label htmlFor="size-options">Size:</label>
 				<select defaultValue={props.size} name="sizeOptions" id="size-options">
-					{sizeOptions()}
+					{colorOptions()}
 				</select>
 			</div>  
   	)
@@ -33,8 +52,10 @@
   var ProductCustomizer = createReactClass({
     getInitialState: function(){
       var sizes = window.Inventory.allSizes;
+      var colors = window.Inventory.allColors;
       return {
         color: "red",
+        colors: colors,
         size: 8,
         sizes: sizes
       };
@@ -48,6 +69,7 @@
         </div>
         <div className="selectors">
           <SizeSelector size={this.state.size} sizes={this.state.sizes}/>
+          <ColorSelector color={this.state.color} colors={this.state.colors}/>
         </div>
       </div>
     )}
